@@ -17,10 +17,4 @@ public class BorsukiRoute {
     private LocalDateTime dateTime;
     private Double distance;
 
-    @Data
-    @NoArgsConstructor
-    private class Point {
-        private double latitude;
-        private double longitude;
-    }
 }
