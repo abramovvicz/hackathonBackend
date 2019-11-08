@@ -31,4 +31,14 @@ public class BorsukiRouteController {
         List<BorsukiRoute> borsukiRoutesForDestinationName = borsukiRouteService.findAllBorsukiRouteByDestinationName(destinationName);
         return new ResponseEntity<>(borsukiRoutesForDestinationName, HttpStatus.OK);
     }
+
+    @GetMapping(value = "/find/compliant", produces = "application/json")
+    public ResponseEntity<List<BorsukiRoute>> findComplaintBorsukiRoutesForPassenger (
+            @RequestParam("startLat") double startLat,
+            @RequestParam("startLng") double startLng,
+            @RequestParam("endLat") double endLat,
+            @RequestParam("endLng") double endLng) {
+        List<BorsukiRoute> compliantBorsukiRoutes = borsukiRouteService.findAllCompliantRoutesForPassenger(startLat, startLng, endLat, endLng);
+        return new ResponseEntity<>(compliantBorsukiRoutes, HttpStatus.OK);
+    }
 }
