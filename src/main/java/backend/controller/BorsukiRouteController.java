@@ -27,8 +27,8 @@ public class BorsukiRouteController {
     }
 
     @GetMapping(value = "/find/byDestination", produces = "application/json")
-    public ResponseEntity<List<BorsukiRoute>> findAllBorsukiRouteByDestinationPlace(@RequestParam("destination") String destinationPlace) {
-        List<BorsukiRoute> borsukiRoutesForDestinationPlace = borsukiRouteService.findAllBorsukiRouteByDestinationPlace(destinationPlace);
-        return new ResponseEntity<>(borsukiRoutesForDestinationPlace, HttpStatus.OK);
+    public ResponseEntity<List<BorsukiRoute>> findAllBorsukiRouteByDestinationName(@RequestParam("destination") String destinationName) {
+        List<BorsukiRoute> borsukiRoutesForDestinationName = borsukiRouteService.findAllBorsukiRouteByDestinationName(destinationName);
+        return new ResponseEntity<>(borsukiRoutesForDestinationName, HttpStatus.OK);
     }
 }

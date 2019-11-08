@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 public interface BorsukiRouteRepository extends MongoRepository<BorsukiRoute, String> {
 
-    List<BorsukiRoute> findAllBorsukiRouteByDestinationPlace(String destinationPlace);
+    List<BorsukiRoute> findAllBorsukiRouteByDestinationName(String destinationName);
 }

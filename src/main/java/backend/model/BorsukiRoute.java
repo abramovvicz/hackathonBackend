@@ -12,8 +12,8 @@ import java.util.List;
 @Document(value = "BorsukiRoute")
 public class BorsukiRoute {
     private List<Point>  route;
-    private String startingPlace;
-    private String destinationPlace;
+    private String startingName;
+    private String destinationName;
     private String driverName;
     private String phoneNumber;
     private LocalDateTime dateTime;

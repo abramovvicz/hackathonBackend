@@ -23,7 +23,7 @@ public class BorsukiRouteService {
         return borsukiRouteRepository.findAll();
     }
 
-    public List<BorsukiRoute> findAllBorsukiRouteByDestinationPlace(String destinationPlace) {
-        return borsukiRouteRepository.findAllBorsukiRouteByDestinationPlace(destinationPlace);
+    public List<BorsukiRoute> findAllBorsukiRouteByDestinationName(String destinationName) {
+        return borsukiRouteRepository.findAllBorsukiRouteByDestinationName(destinationName);
     }
 }
