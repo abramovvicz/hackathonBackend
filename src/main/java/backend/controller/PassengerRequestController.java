@@ -26,8 +26,19 @@ public class PassengerRequestController {
 
     @GetMapping(value = "/request/find", produces = "application/json")
     public ResponseEntity<PassengerRequest> findPassengerRequestByDriverId(@RequestParam("driverId") String driverId) {
+        BorsukiRoute driverRoute = borsukiRouteService.findBorsukiRouteById(driverId);
         PassengerRequest passengerRequest = passengerRequestService.findPassengerRequestByDriverId(driverId);
+        passengerRequest.setDriverStart(getDriverStartPoint(driverRoute));
+        passengerRequest.setDriverDestination(getDriverDestinationPoint(driverRoute));
         return new ResponseEntity<>(passengerRequest, HttpStatus.OK);
+    }
+
+    private Point getDriverDestinationPoint(BorsukiRoute driverRoute) {
+        return driverRoute.getRoute().get(driverRoute.getRoute().size() - 1);
+    }
+
+    private Point getDriverStartPoint(BorsukiRoute driverRoute) {
+        return driverRoute.getRoute().get(0);
     }
 
     @PutMapping(value = "/request/update")
