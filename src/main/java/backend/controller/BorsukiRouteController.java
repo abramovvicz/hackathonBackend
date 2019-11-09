@@ -1,7 +1,10 @@
 package backend.controller;
 
 import backend.model.BorsukiRoute;
+import backend.model.PassengerRequest;
+import backend.model.Point;
 import backend.service.BorsukiRouteService;
+import backend.service.PassengerRequestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,11 +16,13 @@ import java.util.List;
 public class BorsukiRouteController {
     @Autowired
     private BorsukiRouteService borsukiRouteService;
+    @Autowired
+    private PassengerRequestService passengerRequestService;
 
-    @PostMapping(value = "/save", consumes = "application/json")
-    public ResponseEntity insertBorsukiRoute(@RequestBody BorsukiRoute borsukiRoute) {
-        borsukiRouteService.insertBorsukiRoute(borsukiRoute);
-        return ResponseEntity.ok(HttpStatus.CREATED);
+    @PostMapping(value = "/insert", consumes = "application/json")
+    public ResponseEntity<BorsukiRoute> insertBorsukiRoute(@RequestBody BorsukiRoute borsukiRoute) {
+        BorsukiRoute insertedBorsukiRoute = borsukiRouteService.insertBorsukiRoute(borsukiRoute);
+        return new ResponseEntity<>(insertedBorsukiRoute, HttpStatus.OK);
     }
 
     @GetMapping(value = "/find/all", produces = "application/json")

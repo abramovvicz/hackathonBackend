@@ -16,9 +16,9 @@ public class BorsukiRouteService {
     @Autowired
     private BorsukiRouteRepository borsukiRouteRepository;
 
-    public ResponseEntity insertBorsukiRoute(BorsukiRoute borsukiRoute) {
-        borsukiRouteRepository.insert(borsukiRoute);
-        return ResponseEntity.ok(HttpStatus.CREATED);
+    public BorsukiRoute insertBorsukiRoute(BorsukiRoute borsukiRoute) {
+        BorsukiRoute insertedBorsukiRoute = borsukiRouteRepository.insert(borsukiRoute);
+        return insertedBorsukiRoute;
     }
 
     public List<BorsukiRoute> findAllBorsukiRoute() {
@@ -36,6 +36,10 @@ public class BorsukiRouteService {
                 .filter(driverRoute -> isDistanceBetweenPointsCompliant(getLastPointOfDriversRoute(driverRoute), createPoint(endLatitude, endLongitude), driverRoute.getDistance()))
                 .collect(Collectors.toList());
         return allCompliantRoutes;
+    }
+
+    public BorsukiRoute findBorsukiRouteById(String id) {
+        return borsukiRouteRepository.findById(id).get();
     }
 
     private boolean isDistanceBetweenPointsCompliant(Point driverPoint, Point passengerPoint, double acceptableDistance) {
